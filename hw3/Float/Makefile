@@ -12,7 +12,7 @@ integers.o: integers.c
 	gcc $(CFLAGS) ${EXTRA_CFLAGS} ${INCD} -c float.c
 
 clean:
-	rm -fr aloat
+	rm -fr float
 
 .PHONY: all test
 

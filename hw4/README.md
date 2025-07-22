@@ -1,6 +1,6 @@
 # CSE-220-Homework4
-Name: ________
-ID: ##########
+Name: Alexander Prokopiou
+ID: 115449501
 
 This is a program that encrypts/decrypts alphanumerical messages using the Ceasar Cipher Algorithm.
 
@@ -25,19 +25,19 @@ NOTE: All test cases are tested using Criterion. There is no main.c file. To tes
 
 ## int encrypt(const char *plaintext, char *ciphertext, int key)
 
-    Purpose:
+    Purpose: Encrypt a plaintext message using a ceaser cypher given the text, an output array, and encryption key
 
-    Parameters:
+    Parameters: char array of plaintext input, char array for ouput encrypted message, and int encryption key
 
-    Return Value:
+    Return Value: int: number of characters encoded, -1 for insufficient memory allocated for output, -2 if either char array is NULL 
 
 ## int decrypt(const char *ciphertext, char *plaintext, int key) 
 
-    Purpose:
+    Purpose: Decrypt a plaintext message using a ceaser cypher key given the encrypted message, an output array, and encryption key
      
-    Parameters:
+    Parameters: char array of encrypted text input, char array for output of decrypted plaintext message, and int encryption key
     
-    Return Value:
+    Return Value: int: number of decrypted characters, 0 if plaintext array length is 0, -1 if encrypted text is missing an EOM marker, and -2 if either char array is NULL
 
  ## void updateCharacterInformation(int a, int *start, int *range) 
 
