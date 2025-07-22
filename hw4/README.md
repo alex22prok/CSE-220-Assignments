@@ -2,7 +2,7 @@
 Name: Alexander Prokopiou
 ID: 115449501
 
-This is a program that encrypts/decrypts alphanumerical messages using the Ceasar Cipher Algorithm.
+This is a program that encrypts/decrypts alphanumerical messages using the Ceasar Cipher Algorithm. You can skip over/ ignore non alphanumeric characters.
 
 NOTE: All test cases are tested using Criterion. There is no main.c file. To test on your machine use:
 
@@ -39,7 +39,7 @@ NOTE: All test cases are tested using Criterion. There is no main.c file. To tes
     
     Return Value: int: number of decrypted characters, 0 if plaintext array length is 0, -1 if encrypted text is missing an EOM marker, and -2 if either char array is NULL
 
- ## void updateCharacterInformation(int a, int *start, int *range) 
+ ## Your Helper function (arguments,...)
 
     Purpose:
   
