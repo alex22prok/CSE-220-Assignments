@@ -15,6 +15,7 @@ int encrypt(const char *plaintext, char *ciphertext, int key){
         return -1;
     }
 
+    int encrypted = 0;
     int i;
     for (i = 0; plaintext[i] != '\0'; i++)
     {
@@ -24,16 +25,19 @@ int encrypt(const char *plaintext, char *ciphertext, int key){
         if (current >= 'a' && current <= 'z')
         {
             ciphertext[i] = ((current - 'a' + key) % 26) + 'a';
+            encrypted++;
         }
         //if UPPERCASE
-        if (current >= 'A' && current <= 'Z')
+        else if (current >= 'A' && current <= 'Z')
         {
             ciphertext[i] = ((current - 'A' + key) % 26) + 'A';
+            encrypted++;
         }
         //if #
-        if (current >= '0' && current <= '9')
+        else if (current >= '0' && current <= '9')
         {
             ciphertext[i] = ((current - '0' + key) % 10) + '0';
+            encrypted++;
         }
         else
         {
@@ -52,7 +56,7 @@ int encrypt(const char *plaintext, char *ciphertext, int key){
     ciphertext[i] = '\0';
     
     //return # of chars excluding EOM
-    return i-7;
+    return encrypted;
 
     abort();
 }
@@ -67,38 +71,43 @@ int decrypt(const char *ciphertext, char *plaintext, int key){
     if (strlen(plaintext) == 0) return 0;
 
     //Find __EOM__ substring
-    char *eom = strstr(ciphertext, "__EOM__");
-    if (!eom)
+    int eom_index = strstr(ciphertext, "__EOM__") - ciphertext;
+    if (!eom_index)
     {
         return -1;
     }
 
     int count = 0;
-     for (int i = 0; &ciphertext[i] < eom; i++)
+    int index = 0;
+     for (int i = 0; i < eom_index; i++)
     {
         char current = ciphertext[i];
         //if lowercase
         if (current >= 'a' && current <= 'z')
         {
-            plaintext[count++] = ((current - 'a' - key + 26) % 26) + 'a';
+            plaintext[index++] = ((current - 'a' - key + 26) % 26) + 'a';
+            count++;
         }
         //if UPPERCASE
-        if (current >= 'A' && current <= 'Z')
+        else if (current >= 'A' && current <= 'Z')
         {
-            plaintext[count++] = ((current - 'A' - key + 26) % 26) + 'A';
+            plaintext[index++] = ((current - 'A' - key + 26) % 26) + 'A';
+            count++;
         }
         //if #
-        if (current >= '0' && current <= '9')
+        else if (current >= '0' && current <= '9')
         {
-            plaintext[count++] = ((current - '0' - key + 10) % 10) + '0';
+            plaintext[index++] = ((current - '0' - key + 10) % 10) + '0';
+            count++;
         }
         else
         {
-            plaintext[count++] = current;
+            plaintext[index++] = current;
         }
+        
     }
-
-    plaintext[count] = '\0';
+    //append null terminator
+    plaintext[index] = '\0';
     return count;
     abort();
 }

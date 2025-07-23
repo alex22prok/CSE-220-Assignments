@@ -41,9 +41,9 @@ NOTE: All test cases are tested using Criterion. There is no main.c file. To tes
 
  ## Your Helper function (arguments,...)
 
-    Purpose:
+    Purpose: N/A
   
-    Parameters:
+    Parameters: N/A
 
 # Test Cases
 
@@ -52,8 +52,28 @@ NOTE: All test cases are tested using Criterion. There is no main.c file. To tes
 Includes various test cases to validate the `encrypt` and `decrypt` functions under different scenarios.
 
 ### Encrypt Tests
+
+1. **Test Case: "xyz"**
+   - **Plaintext**: "xyz"
+   - **Ciphertext**: "abc__EOM__"
+   - **Description**: Tests if lowercase letters wrap correctly from 'z' to 'a' using key `3`.
+
+2. **Test Case: "789"**
+   - **Plaintext**: "789"
+   - **Ciphertext**: "123__EOM__"
+   - **Description**: Tests if digits wrap correctly from '9' to '0' using key `4`.
+
 ### Decrypt Tests
 
+1. **Test Case: "HelloWorld123__EOM__"**
+   - **Ciphertext**: "HelloWorld123__EOM__"
+   - **Plaintext**: "HelloWorld123"
+   - **Description**: Tests if characters remain unchanged when decrypting with key `0`.
+
+2. **Test Case: "ABC012__EOM__"**
+   - **Ciphertext**: "ABC012__EOM__"
+   - **Plaintext**: "ZAB901"
+   - **Description**: Tests if uppercase letters and digits wrap backward correctly using key `1`.
 
 ## Base Suite
 
