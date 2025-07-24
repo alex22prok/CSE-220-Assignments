@@ -31,6 +31,8 @@ NOTE: All test cases are tested using Criterion. There is no main.c file. To tes
 
     Return Value: int: number of characters encoded, -1 for insufficient memory allocated for output, -2 if either char array is NULL 
 
+    Further Notes: ciphertext is not treated as an array, but as a traditional string. It is always initialized of the size exactly as long as the string plus the null terminator. ciphertext is always long enough to store "undefined__EOM__" as is shown in the example test cases.
+
 ## int decrypt(const char *ciphertext, char *plaintext, int key) 
 
     Purpose: Decrypt a plaintext message using a ceaser cypher key given the encrypted message, an output array, and encryption key
@@ -39,12 +41,25 @@ NOTE: All test cases are tested using Criterion. There is no main.c file. To tes
     
     Return Value: int: number of decrypted characters, 0 if plaintext array length is 0, -1 if encrypted text is missing an EOM marker, and -2 if either char array is NULL
 
+    Further Notes: ciphertext is not treated as an array, but as a traditional string. It is always initialized of the size exactly as long as the string plus the null terminator.
+
  ## Your Helper function (arguments,...)
 
     Purpose: N/A
   
     Parameters: N/A
 
+
+## NOTES 
+
+   Firstly, the idea that I should not worry about the memory allocated for ciphertext in encrypt() can't be good practice in C. It should either be stated explicitly that it is always to be initialized const char *ciphertext[] = "example", (ie. of the size of the string it is holding), or it should be of a reasonable size documented in the hw document (say 64 bytes).
+
+   Secondly, the requirement which you relaxed about ciphertext being "undefined__EOM__" should have been explicitly stated alongside the return statements. I would have missed this requirement if I had not read piazza the morning 7/24. I should have all of the instructions written clearly such that I can complete the assignment when it comes out. 
+      Furthermore, having to wait until recitation on Tuesday to see the expectation about criterion is ridiculous. I could have finished the homework before the recitation had you attached instruction to download criterion alongside documentation.
+
+   Thirdly, by writing in the table of test cases under decryption: ciphertext --> empty__EOM__ , how am I supposed to interpret this? It's ambiguous, I can take a guess and assume it means "__EOM__"" but that is an assumption.
+
+   
 # Test Cases
 
 ## Student Suite
@@ -63,6 +78,21 @@ Includes various test cases to validate the `encrypt` and `decrypt` functions un
    - **Ciphertext**: "123__EOM__"
    - **Description**: Tests if digits wrap correctly from '9' to '0' using key `4`.
 
+3. **Test Case: "abc"**
+   - **Plaintext**: "abc"
+   - **Ciphertext**:"yza__EOM__"
+   - **Description**: Tests if lowercase letters wrap correctly from 'a' to 'z' when using a negative key `-2`.
+
+4. **Test Case: "XYZ"**
+   - **Plaintext**: "XYZ"
+   - **Ciphertext**:"ABC__EOM__"
+   - **Description**: Tests if uppercase letters shift correctly and wrap from 'Z' to 'A' using key `3`.
+
+5. **Test Case: Empty String**
+   - **Plaintext**: ""
+   - **Ciphertext**:"__EOM__"
+   - **Description**: Tests behavior when encrypting an empty string. The result should only be the EOM marker, with a return value of `0`.
+
 ### Decrypt Tests
 
 1. **Test Case: "HelloWorld123__EOM__"**
@@ -75,6 +105,22 @@ Includes various test cases to validate the `encrypt` and `decrypt` functions un
    - **Plaintext**: "ZAB901"
    - **Description**: Tests if uppercase letters and digits wrap backward correctly using key `1`.
 
+3. **Test Case: Empty Message "__EOM__"**
+   - **Ciphertext**: "__EOM__"
+   - **Plaintext**: ""
+   - **Description**: Tests if decrypt returns `0` when valid ciphertext is empty.
+
+4. **Test Case: No EOM "InvalidCiphertext"**
+   - **Ciphertext**: "InvalidCiphertext"
+   - **Plaintext**:  (unchanged)
+   - **Description**: Tests if decrypt correctly returns `-1` when __EOM__ marker is missing from ciphertext.
+
+5. **Test Case: "D1F__EOM__"**
+   - **Ciphertext**: "D1F__EOM__"
+   - **Plaintext**: "B9D"
+   - **Description**: Tests if mixed uppercase letters and digits decrypt correctly with key `2`.
+
+   
 ## Base Suite
 
 Includes baseline tests provided by TAs to validate the `encrypt` and `decrypt` functions.

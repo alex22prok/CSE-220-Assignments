@@ -1,17 +1,27 @@
 {
   "id": "Criterion v2.4.0",
-  "passed": 8,
+  "passed": 14,
   "failed": 0,
   "errored": 0,
   "skipped": 0,
   "test_suites": [
     {
       "name": "base_suite",
-      "passed": 8,
+      "passed": 14,
       "failed": 0,
       "errored": 0,
       "skipped": 0,
       "tests": [
+        {
+          "name": "encrypt_uppercase_shift",
+          "assertions": 2,
+          "status": "PASSED"
+        },
+        {
+          "name": "encrypt_negative_key_wrap",
+          "assertions": 2,
+          "status": "PASSED"
+        },
         {
           "name": "encrypt_lowercase_wraparound",
           "assertions": 2,
@@ -24,6 +34,11 @@
         },
         {
           "name": "encrypt_full_msg",
+          "assertions": 2,
+          "status": "PASSED"
+        },
+        {
+          "name": "encrypt_empty_string",
           "assertions": 2,
           "status": "PASSED"
         },
@@ -43,6 +58,16 @@
           "status": "PASSED"
         },
         {
+          "name": "decrypt_mixed_alphanumeric",
+          "assertions": 2,
+          "status": "PASSED"
+        },
+        {
+          "name": "decrypt_missing_eom",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
           "name": "decrypt_full_msg_numbers",
           "assertions": 2,
           "status": "PASSED"
@@ -50,6 +75,11 @@
         {
           "name": "decrypt_full_msg",
           "assertions": 2,
+          "status": "PASSED"
+        },
+        {
+          "name": "decrypt_empty_buffer",
+          "assertions": 1,
           "status": "PASSED"
         }
       ]
