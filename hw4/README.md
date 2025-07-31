@@ -31,7 +31,10 @@ NOTE: All test cases are tested using Criterion. There is no main.c file. To tes
 
     Return Value: int: number of characters encoded, -1 for insufficient memory allocated for output, -2 if either char array is NULL 
 
-    Further Notes: ciphertext is not treated as an array, but as a traditional string. It is always initialized of the size exactly as long as the string plus the null terminator. ciphertext is always long enough to store "undefined__EOM__" as is shown in the example test cases.
+    Further Notes: 
+      Ciphertext is not treated as an array, but as a traditional string. It is always initialized of the size exactly as long as the string plus the null terminator. ciphertext is always long enough to store "undefined__EOM__" as is shown in the example test cases.
+
+      return precedence is: -2, -1, 0 see below
 
 ## int decrypt(const char *ciphertext, char *plaintext, int key) 
 
@@ -42,6 +45,8 @@ NOTE: All test cases are tested using Criterion. There is no main.c file. To tes
     Return Value: int: number of decrypted characters, 0 if plaintext array length is 0, -1 if encrypted text is missing an EOM marker, and -2 if either char array is NULL
 
     Further Notes: ciphertext is not treated as an array, but as a traditional string. It is always initialized of the size exactly as long as the string plus the null terminator.
+
+    return precedence is: -2, 0, -1 see below
 
  ## Your Helper function (arguments,...)
 
@@ -58,6 +63,8 @@ NOTE: All test cases are tested using Criterion. There is no main.c file. To tes
       Furthermore, having to wait until recitation on Tuesday to see the expectation about criterion is ridiculous. I could have finished the homework before the recitation had you attached instruction to download criterion alongside documentation.
 
    Thirdly, by writing in the table of test cases under decryption: ciphertext --> empty__EOM__ , how am I supposed to interpret this? It's ambiguous, I can take a guess and assume it means "__EOM__"" but that is an assumption.
+
+   Fourthly, I am returning -1 before returning 0 because of the edge case that there is not enough space to fit __EOM__ even if plaintext is empty. Even if plaintext is empty I cannot write __EOM__ into ciphertext if there is not enough space to fit it.
 
    
 # Test Cases

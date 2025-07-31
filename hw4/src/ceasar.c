@@ -14,7 +14,6 @@ int encrypt(const char *plaintext, char *ciphertext, int key){
         return -1;
     }
 
-
     //empty plaintext
     if (plaintext[0] == '\0') {
         const char *EOM = "__EOM__";
