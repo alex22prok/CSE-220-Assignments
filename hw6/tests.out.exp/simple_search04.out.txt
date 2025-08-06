@@ -1,6 +1,6 @@
 After AT&T had dropped out of the Multics project, the Unix operating system was 
 conceived and implemented by Ken Thompson and Dennis Ritchie (both of AT&T Bell
-Laboratories) in 1969 and first released in 1970. Later, rewrote it in a new
+Laboratories) in 1969 and 1st released in 1970. Later, rewrote it in a new
 programming language, C, to make it portable. The availability and portability 
 of Unix caused it to be widely adopted, copied and modified by academic 
 institutions and businesses.
@@ -15,7 +15,7 @@ Onyx Systems began selling early microcomputer-based Unix workstations in 1980.
 Later, Sun Microsystems, founded as a spin-off of a student project at Stanford
 University, also began selling Unix-based desktop workstations in 1982. While Sun
 workstations didn't utilize commodity PC hardware like Linux was later developed for,
-it represented the first successful commercial attempt at distributing a primarily
+it represented the 1st successful commercial attempt at distributing a primarily
 single-user microcomputer that ran a Unix operating system.
 
 In 1983, Richard Stallman started the GNU project with the goal of creating a free
