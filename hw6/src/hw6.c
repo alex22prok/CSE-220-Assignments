@@ -1,5 +1,4 @@
 #include "hw6.h"
-#include <bits/getopt_core.h>
 
 void replace_and_write_line(FILE* out, const char* line, const char* search, const char* replace);
 
@@ -8,75 +7,96 @@ int main(int argc, char *argv[]) {
         return MISSING_ARGUMENT;
     }
 
-    // Input and output file are always last two arguments
+    //Input and output file are always last two arguments
     char* infile = argv[argc - 2];
     char* outfile = argv[argc - 1];
 
-    // Variables to store options
+    //Variables to store options
     char *search_text = NULL;
     char *replace_text = NULL;
     char *line_range = NULL;
-    int start_line = 1, end_line = -1;  // Defaults: apply to whole file
+    int start_line = 1, end_line = -1;  //default start and end
 
-    // Flags for detecting duplicates
+    //Flags for detecting duplicates
     int s_seen = 0, r_seen = 0, l_seen = 0;
 
-    // Reset getopt's internal index (for repeated runs/testing)
-    optind = 1;
-
-    int opt;
-    while ((opt = getopt(argc - 2, argv, "s:r:l:")) != -1) {
-        switch (opt) {
-            case 's':
-                if (s_seen++) return DUPLICATE_ARGUMENT;
-                if (optarg[0] == '-') return S_ARGUMENT_MISSING;
-                search_text = optarg;
-                break;
-            case 'r':
-                if (r_seen++) return DUPLICATE_ARGUMENT;
-                if (optarg[0] == '-') return R_ARGUMENT_MISSING;
-                replace_text = optarg;
-                break;
-            case 'l':
-                if (l_seen++) return DUPLICATE_ARGUMENT;
-                if (optarg[0] == '-') return L_ARGUMENT_INVALID;
-                line_range = optarg;
-                break;
-            default:
-                break;  // unknown flags are ignored
+    //loop until input file arg
+    for (int i = 1; i < argc - 2; i++) { 
+        //-s case
+        if (strcmp(argv[i], "-s") == 0) { 
+            if (s_seen++) 
+            {
+                return DUPLICATE_ARGUMENT;
+            }
+            if (i + 1 >= argc - 2 || argv[i + 1][0] == '-') 
+            {
+                return S_ARGUMENT_MISSING;
+            }
+            search_text = argv[++i];
+        }
+        //-r case 
+        else if (strcmp(argv[i], "-r") == 0) { 
+            if (r_seen++) 
+            {
+                return DUPLICATE_ARGUMENT;
+            }
+            if (i + 1 >= argc - 2 || argv[i + 1][0] == '-') 
+            {
+                return R_ARGUMENT_MISSING;
+            }
+            replace_text = argv[++i];
+        } 
+        //-l case
+        else if (strcmp(argv[i], "-l") == 0) { 
+            if (l_seen++) 
+            {
+                return DUPLICATE_ARGUMENT;
+            }
+            if (i + 1 >= argc - 2 || argv[i + 1][0] == '-') 
+            {
+                return L_ARGUMENT_INVALID;
+            }
+            line_range = argv[++i];
         }
     }
 
-    // Check if -s and -r were missing or lacked arguments
+    //Check if -s and -r were missing or lacked arguments
     if (!search_text) return S_ARGUMENT_MISSING;
     if (!replace_text) return R_ARGUMENT_MISSING;
 
-    // Parse line range if given
+    //if given line range
     if (line_range) {
         char *token = strtok(line_range, ",");
-        if (!token) return L_ARGUMENT_INVALID;
+        if (!token) 
+        {
+            return L_ARGUMENT_INVALID;
+        }
         start_line = strtol(token, NULL, 10);
 
         token = strtok(NULL, ",");
-        if (!token) return L_ARGUMENT_INVALID;
+        if (!token) {
+            return L_ARGUMENT_INVALID;
+        }
         end_line = strtol(token, NULL, 10);
 
         if (start_line <= 0 || end_line <= 0 || start_line > end_line)
+        {
             return L_ARGUMENT_INVALID;
+        }
     }
 
-    // Open input file
+    //Open input file
     FILE *in_fp = fopen(infile, "r");
-    if (!in_fp) return INPUT_FILE_MISSING;
+    if (!in_fp) {return INPUT_FILE_MISSING;}
 
-    // Open output file
+    //Open output file
     FILE *out_fp = fopen(outfile, "w");
     if (!out_fp) {
         fclose(in_fp);
         return OUTPUT_FILE_UNWRITABLE;
     }
 
-    char buffer[MAX_LINE + 2];  // +2 for newline and null terminator
+    char buffer[MAX_LINE + 2];  //+2 for \n and \0
     int line_num = 1;
 
     while (fgets(buffer, sizeof(buffer), in_fp) != NULL) {
@@ -94,28 +114,27 @@ int main(int argc, char *argv[]) {
 
     fclose(in_fp);
     fclose(out_fp);
-    return 0;  // success
+    return 0;  //success
 }
 
 void replace_and_write_line(FILE* out, const char* line, const char* search, const char* replace) {
-    const char* pos = line;
     size_t search_len = strlen(search);
     size_t replace_len = strlen(replace);
+    const char *p = line;
 
-    while ((pos = strstr(pos, search)) != NULL) {
-        // Write everything up to the match
-        fwrite(line, 1, pos - line, out);
+    while (*p) {
+        const char* match = strstr(p, search);
+        if (!match) {
+            fputs(p, out);  //Write remainder of the line
+            break;
+        }
 
-        // Write the replacement
+        //Write part before the match
+        fwrite(p, 1, match - p, out);
+        //Write the replacement text
         fwrite(replace, 1, replace_len, out);
 
-        // Advance the pointer past the match
-        pos += search_len;
-
-        // Move the base pointer for the next chunk
-        line = pos;
+        //Move past the matched text
+        p = match + search_len;
     }
-
-    // Write the rest of the line
-    fputs(line, out);
 }

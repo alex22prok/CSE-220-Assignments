@@ -1,6 +1,6 @@
 # CSE-220-Homework6
-Name: 
-ID: ##########
+Name: Alexander Prokopiou
+ID: 115449501
 
 # Submission folder structure:
 
