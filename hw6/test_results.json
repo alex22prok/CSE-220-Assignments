@@ -1,0 +1,241 @@
+{
+  "id": "Criterion v2.4.0",
+  "passed": 25,
+  "failed": 10,
+  "errored": 0,
+  "skipped": 0,
+  "test_suites": [
+    {
+      "name": "base_valgrind",
+      "passed": 10,
+      "failed": 0,
+      "errored": 0,
+      "skipped": 0,
+      "tests": [
+        {
+          "name": "simple_search10",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "simple_search09",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "simple_search08",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "simple_search07",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "simple_search06",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "simple_search05",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "simple_search04",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "simple_search03",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "simple_search02",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "simple_search01",
+          "assertions": 1,
+          "status": "PASSED"
+        }
+      ]
+    },
+    {
+      "name": "base_output",
+      "passed": 0,
+      "failed": 10,
+      "errored": 0,
+      "skipped": 0,
+      "tests": [
+        {
+          "name": "simple_search10",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        },
+        {
+          "name": "simple_search09",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        },
+        {
+          "name": "simple_search08",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        },
+        {
+          "name": "simple_search07",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        },
+        {
+          "name": "simple_search06",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        },
+        {
+          "name": "simple_search05",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        },
+        {
+          "name": "simple_search04",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        },
+        {
+          "name": "simple_search03",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        },
+        {
+          "name": "simple_search02",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        },
+        {
+          "name": "simple_search01",
+          "assertions": 1,
+          "status": "FAILED",
+          "messages": [
+            "tests/unit_tests.c:42: The output was not what was expected (diff exited with status 2)."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "base_invalid_args",
+      "passed": 15,
+      "failed": 0,
+      "errored": 0,
+      "skipped": 0,
+      "tests": [
+        {
+          "name": "s_argument_missing03",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "s_argument_missing02",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "s_argument_missing01",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "r_argument_missing03",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "r_argument_missing02",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "r_argument_missing01",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "output_file_unwritable02",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "output_file_unwritable01",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "l_argument_invalid04",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "l_argument_invalid03",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "l_argument_invalid02",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "l_argument_invalid01",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "input_file_missing",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "duplicate_argument01",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "args_missing01",
+          "assertions": 1,
+          "status": "PASSED"
+        }
+      ]
+    }
+  ]
+}

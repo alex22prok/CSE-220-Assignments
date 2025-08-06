@@ -1,0 +1,13 @@
+==30376== Memcheck, a memory error detector
+==30376== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==30376== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==30376== Command: ./bin/hw6 -r 1st -l 1,20 -s first tests.in/simple_search04.in.txt tests.out/simple_search04.out.txt
+==30376== 
+==30376== 
+==30376== HEAP SUMMARY:
+==30376==     in use at exit: 0 bytes in 0 blocks
+==30376==   total heap usage: 4 allocs, 4 frees, 9,136 bytes allocated
+==30376== 
+==30376== All heap blocks were freed -- no leaks are possible
+==30376== 
+==30376== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
