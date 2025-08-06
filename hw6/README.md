@@ -11,6 +11,7 @@ CSE220_{SBU ID#}_HW6
 
 ## Functions:
 1. int main(int argc, char *argv[])
+
 2. void replace_and_write_line(FILE* out, const char* line, const char* search, const char* replace)
 
 # Guidelines:
